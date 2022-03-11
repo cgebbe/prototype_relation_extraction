@@ -1,0 +1,912 @@
+[
+  {
+    "id": 9,
+    "annotations": [
+      {
+        "id": 9,
+        "completed_by": 1,
+        "result": [
+          {
+            "value": {
+              "start": 0,
+              "end": 19,
+              "text": "Hochschul­abschluss",
+              "labels": ["education_type"]
+            },
+            "id": "ISSPIe4xs9",
+            "from_name": "label",
+            "to_name": "text",
+            "type": "labels",
+            "origin": "manual"
+          },
+          {
+            "value": {
+              "start": 21,
+              "end": 29,
+              "text": "Bachelor",
+              "labels": ["education_type"]
+            },
+            "id": "Wf9OHJjiLi",
+            "from_name": "label",
+            "to_name": "text",
+            "type": "labels",
+            "origin": "manual"
+          },
+          {
+            "value": {
+              "start": 35,
+              "end": 41,
+              "text": "Master",
+              "labels": ["education_type"]
+            },
+            "id": "VGLPvic664",
+            "from_name": "label",
+            "to_name": "text",
+            "type": "labels",
+            "origin": "manual"
+          },
+          {
+            "value": {
+              "start": 46,
+              "end": 74,
+              "text": "Wirt­schafts­wissen­schaften",
+              "labels": ["education_topic"]
+            },
+            "id": "eF1DjEbAYq",
+            "from_name": "label",
+            "to_name": "text",
+            "type": "labels",
+            "origin": "manual"
+          },
+          {
+            "value": {
+              "start": 75,
+              "end": 87,
+              "text": "-infor­matik",
+              "labels": ["education_topic"]
+            },
+            "id": "QBZucUPqCo",
+            "from_name": "label",
+            "to_name": "text",
+            "type": "labels",
+            "origin": "manual"
+          },
+          {
+            "from_id": "ISSPIe4xs9",
+            "to_id": "eF1DjEbAYq",
+            "type": "relation",
+            "direction": "right",
+            "labels": ["education:in"]
+          },
+          {
+            "from_id": "ISSPIe4xs9",
+            "to_id": "QBZucUPqCo",
+            "type": "relation",
+            "direction": "right",
+            "labels": ["education:in"]
+          },
+          {
+            "from_id": "Wf9OHJjiLi",
+            "to_id": "eF1DjEbAYq",
+            "type": "relation",
+            "direction": "right",
+            "labels": ["education:in"]
+          },
+          {
+            "from_id": "Wf9OHJjiLi",
+            "to_id": "QBZucUPqCo",
+            "type": "relation",
+            "direction": "right",
+            "labels": ["education:in"]
+          },
+          {
+            "from_id": "VGLPvic664",
+            "to_id": "eF1DjEbAYq",
+            "type": "relation",
+            "direction": "right",
+            "labels": ["education:in"]
+          },
+          {
+            "from_id": "VGLPvic664",
+            "to_id": "QBZucUPqCo",
+            "type": "relation",
+            "direction": "right",
+            "labels": ["education:in"]
+          }
+        ],
+        "was_cancelled": false,
+        "ground_truth": false,
+        "created_at": "2022-03-09T08:38:42.020611Z",
+        "updated_at": "2022-03-09T08:39:41.670330Z",
+        "lead_time": 1539.125,
+        "prediction": {},
+        "result_count": 0,
+        "task": 9,
+        "parent_prediction": null,
+        "parent_annotation": null
+      }
+    ],
+    "file_upload": "aefde40b-sentences.txt",
+    "drafts": [],
+    "predictions": [],
+    "data": {
+      "text": "Hochschul­abschluss (Bachelor oder Master) in Wirt­schafts­wissen­schaften/-infor­matik/-mathe­matik oder ver­gleichbare Quali­fikation"
+    },
+    "meta": {},
+    "created_at": "2022-03-09T08:15:06.511677Z",
+    "updated_at": "2022-03-09T08:39:40.882464Z",
+    "project": 1
+  },
+  {
+    "id": 14,
+    "annotations": [
+      {
+        "id": 11,
+        "completed_by": 1,
+        "result": [
+          {
+            "value": {
+              "start": 21,
+              "end": 31,
+              "text": "ausbildung",
+              "labels": ["education_type"]
+            },
+            "id": "BHUZimC2xa",
+            "from_name": "label",
+            "to_name": "text",
+            "type": "labels",
+            "origin": "manual"
+          },
+          {
+            "value": {
+              "start": 43,
+              "end": 53,
+              "text": "mechaniker",
+              "labels": ["education_type"]
+            },
+            "id": "c0zp7rmQ1h",
+            "from_name": "label",
+            "to_name": "text",
+            "type": "labels",
+            "origin": "manual"
+          },
+          {
+            "value": {
+              "start": 36,
+              "end": 43,
+              "text": "Anlagen",
+              "labels": ["education_topic"]
+            },
+            "id": "65qdw54dLL",
+            "from_name": "label",
+            "to_name": "text",
+            "type": "labels",
+            "origin": "manual"
+          },
+          {
+            "value": {
+              "start": 89,
+              "end": 93,
+              "text": "weiß",
+              "labels": ["education_topic"]
+            },
+            "id": "MYpwdXfULZ",
+            "from_name": "label",
+            "to_name": "text",
+            "type": "labels",
+            "origin": "manual"
+          },
+          {
+            "value": {
+              "start": 124,
+              "end": 132,
+              "text": "Qualifik",
+              "labels": ["education_type"]
+            },
+            "id": "TT1CoOpBRL",
+            "from_name": "label",
+            "to_name": "text",
+            "type": "labels",
+            "origin": "manual"
+          },
+          {
+            "value": {
+              "start": 63,
+              "end": 67,
+              "text": "Rohr",
+              "labels": ["education_topic"]
+            },
+            "id": "WlbvLgfWHB",
+            "from_name": "label",
+            "to_name": "text",
+            "type": "labels",
+            "origin": "manual"
+          }
+        ],
+        "was_cancelled": false,
+        "ground_truth": false,
+        "created_at": "2022-03-10T07:22:25.083517Z",
+        "updated_at": "2022-03-10T07:22:25.083617Z",
+        "lead_time": 51.28,
+        "prediction": {},
+        "result_count": 0,
+        "task": 14,
+        "parent_prediction": null,
+        "parent_annotation": null
+      }
+    ],
+    "file_upload": "aefde40b-sentences.txt",
+    "drafts": [],
+    "predictions": [],
+    "data": {
+      "text": "Abgeschlossene Berufsausbildung als Anlagenmechaniker (m/w/d), Rohrschlosser (m/w/d), Schweißer (m/w/d)  oder vergleichbare Qualifikation"
+    },
+    "meta": {},
+    "created_at": "2022-03-09T08:15:06.511998Z",
+    "updated_at": "2022-03-09T08:15:06.512012Z",
+    "project": 1
+  },
+  {
+    "id": 8,
+    "annotations": [
+      {
+        "id": 8,
+        "completed_by": 1,
+        "result": [
+          {
+            "value": {
+              "start": 28,
+              "end": 44,
+              "text": "Hochschulstudium",
+              "labels": ["education_type"]
+            },
+            "id": "Ma3xjpqBp_",
+            "from_name": "label",
+            "to_name": "text",
+            "type": "labels",
+            "origin": "manual"
+          },
+          {
+            "value": {
+              "start": 62,
+              "end": 72,
+              "text": "Informatik",
+              "labels": ["education_topic"]
+            },
+            "id": "WBhGYCZAyx",
+            "from_name": "label",
+            "to_name": "text",
+            "type": "labels",
+            "origin": "manual"
+          },
+          {
+            "value": {
+              "start": 74,
+              "end": 99,
+              "text": "Wirtschaftswissenschaften",
+              "labels": ["education_topic"]
+            },
+            "id": "algQP80dg4",
+            "from_name": "label",
+            "to_name": "text",
+            "type": "labels",
+            "origin": "manual"
+          },
+          {
+            "value": {
+              "start": 116,
+              "end": 130,
+              "text": "Ingenieurwesen",
+              "labels": ["education_topic"]
+            },
+            "id": "pbT5eJtBFv",
+            "from_name": "label",
+            "to_name": "text",
+            "type": "labels",
+            "origin": "manual"
+          },
+          {
+            "from_id": "Ma3xjpqBp_",
+            "to_id": "WBhGYCZAyx",
+            "type": "relation",
+            "direction": "right",
+            "labels": ["education:in"]
+          },
+          {
+            "from_id": "Ma3xjpqBp_",
+            "to_id": "algQP80dg4",
+            "type": "relation",
+            "direction": "right",
+            "labels": ["education:in"]
+          },
+          {
+            "from_id": "Ma3xjpqBp_",
+            "to_id": "pbT5eJtBFv",
+            "type": "relation",
+            "direction": "right",
+            "labels": ["education:in"]
+          }
+        ],
+        "was_cancelled": false,
+        "ground_truth": false,
+        "created_at": "2022-03-09T08:37:20.301921Z",
+        "updated_at": "2022-03-09T08:37:20.301978Z",
+        "lead_time": 25.074,
+        "prediction": {},
+        "result_count": 0,
+        "task": 8,
+        "parent_prediction": null,
+        "parent_annotation": null
+      }
+    ],
+    "file_upload": "aefde40b-sentences.txt",
+    "drafts": [],
+    "predictions": [],
+    "data": {
+      "text": "Erfolgreich abgeschlossenes Hochschulstudium in (Wirtschafts-)Informatik, Wirtschaftswissenschaften, (Wirtschafts-) Ingenieurwesen oder ähnlicher Fachrichtungen"
+    },
+    "meta": {},
+    "created_at": "2022-03-09T08:15:06.511617Z",
+    "updated_at": "2022-03-09T08:15:06.511631Z",
+    "project": 1
+  },
+  {
+    "id": 7,
+    "annotations": [
+      {
+        "id": 7,
+        "completed_by": 1,
+        "result": [
+          {
+            "value": {
+              "start": 0,
+              "end": 10,
+              "text": "Ausbildung",
+              "labels": ["education_type"]
+            },
+            "id": "FS9-xC_tuy",
+            "from_name": "label",
+            "to_name": "text",
+            "type": "labels",
+            "origin": "manual"
+          },
+          {
+            "value": {
+              "start": 15,
+              "end": 24,
+              "text": "Fleischer",
+              "labels": ["education_topic"]
+            },
+            "id": "-PUxm7aRGj",
+            "from_name": "label",
+            "to_name": "text",
+            "type": "labels",
+            "origin": "manual"
+          },
+          {
+            "value": {
+              "start": 30,
+              "end": 46,
+              "text": "Fleischermeister",
+              "labels": ["education_topic"]
+            },
+            "id": "6-qos4v8yF",
+            "from_name": "label",
+            "to_name": "text",
+            "type": "labels",
+            "origin": "manual"
+          },
+          {
+            "value": {
+              "start": 56,
+              "end": 93,
+              "text": "Fachverkäufer im Lebensmittelhandwerk",
+              "labels": ["education_topic"]
+            },
+            "id": "GIHPv7FOk0",
+            "from_name": "label",
+            "to_name": "text",
+            "type": "labels",
+            "origin": "manual"
+          },
+          {
+            "from_id": "FS9-xC_tuy",
+            "to_id": "-PUxm7aRGj",
+            "type": "relation",
+            "direction": "right",
+            "labels": ["education:in"]
+          },
+          {
+            "from_id": "FS9-xC_tuy",
+            "to_id": "6-qos4v8yF",
+            "type": "relation",
+            "direction": "right",
+            "labels": ["education:in"]
+          },
+          {
+            "from_id": "FS9-xC_tuy",
+            "to_id": "GIHPv7FOk0",
+            "type": "relation",
+            "direction": "right",
+            "labels": ["education:in"]
+          }
+        ],
+        "was_cancelled": false,
+        "ground_truth": false,
+        "created_at": "2022-03-09T08:36:52.531707Z",
+        "updated_at": "2022-03-09T08:36:52.531766Z",
+        "lead_time": 26.516,
+        "prediction": {},
+        "result_count": 0,
+        "task": 7,
+        "parent_prediction": null,
+        "parent_annotation": null
+      }
+    ],
+    "file_upload": "aefde40b-sentences.txt",
+    "drafts": [],
+    "predictions": [],
+    "data": {
+      "text": "Ausbildung zum Fleischer bzw. Fleischermeister (m/w/d), Fachverkäufer im Lebensmittelhandwerk (m/w/d) mit Schwerpunkt Fleischerei, vergleichbare Ausbildung oder Erfahrung in diesem Bereich"
+    },
+    "meta": {},
+    "created_at": "2022-03-09T08:15:06.511557Z",
+    "updated_at": "2022-03-09T08:15:06.511571Z",
+    "project": 1
+  },
+  {
+    "id": 6,
+    "annotations": [
+      {
+        "id": 6,
+        "completed_by": 1,
+        "result": [
+          {
+            "value": {
+              "start": 0,
+              "end": 7,
+              "text": "Studium",
+              "labels": ["education_type"]
+            },
+            "id": "5moxskpBbL",
+            "from_name": "label",
+            "to_name": "text",
+            "type": "labels",
+            "origin": "manual"
+          },
+          {
+            "value": {
+              "start": 8,
+              "end": 18,
+              "text": "Ausbildung",
+              "labels": ["education_type"]
+            },
+            "id": "v2nkQR4hbo",
+            "from_name": "label",
+            "to_name": "text",
+            "type": "labels",
+            "origin": "manual"
+          },
+          {
+            "value": {
+              "start": 30,
+              "end": 33,
+              "text": "CGI",
+              "labels": ["education_topic"]
+            },
+            "id": "JLZ1IHKzIQ",
+            "from_name": "label",
+            "to_name": "text",
+            "type": "labels",
+            "origin": "manual"
+          },
+          {
+            "from_id": "5moxskpBbL",
+            "to_id": "JLZ1IHKzIQ",
+            "type": "relation",
+            "direction": "right",
+            "labels": ["education:in"]
+          },
+          {
+            "from_id": "v2nkQR4hbo",
+            "to_id": "JLZ1IHKzIQ",
+            "type": "relation",
+            "direction": "right",
+            "labels": ["education:in"]
+          }
+        ],
+        "was_cancelled": false,
+        "ground_truth": false,
+        "created_at": "2022-03-09T08:36:23.534321Z",
+        "updated_at": "2022-03-09T08:36:23.534369Z",
+        "lead_time": 22.794,
+        "prediction": {},
+        "result_count": 0,
+        "task": 6,
+        "parent_prediction": null,
+        "parent_annotation": null
+      }
+    ],
+    "file_upload": "aefde40b-sentences.txt",
+    "drafts": [],
+    "predictions": [],
+    "data": {
+      "text": "Studium/Ausbildung im Bereich CGI oder mehrjährige berufliche Erfahrung"
+    },
+    "meta": {},
+    "created_at": "2022-03-09T08:15:06.511496Z",
+    "updated_at": "2022-03-09T08:15:06.511510Z",
+    "project": 1
+  },
+  {
+    "id": 5,
+    "annotations": [
+      {
+        "id": 5,
+        "completed_by": 1,
+        "result": [
+          {
+            "value": {
+              "start": 27,
+              "end": 43,
+              "text": "Berufsausbildung",
+              "labels": ["education_type"]
+            },
+            "id": "qWy5WLvhJC",
+            "from_name": "label",
+            "to_name": "text",
+            "type": "labels",
+            "origin": "manual"
+          },
+          {
+            "value": {
+              "start": 48,
+              "end": 64,
+              "text": "Fachinformatiker",
+              "labels": ["education_topic"]
+            },
+            "id": "PwDG5Mh-YE",
+            "from_name": "label",
+            "to_name": "text",
+            "type": "labels",
+            "origin": "manual"
+          },
+          {
+            "from_id": "qWy5WLvhJC",
+            "to_id": "PwDG5Mh-YE",
+            "type": "relation",
+            "direction": "right",
+            "labels": ["education:in"]
+          }
+        ],
+        "was_cancelled": false,
+        "ground_truth": false,
+        "created_at": "2022-03-09T08:35:42.657763Z",
+        "updated_at": "2022-03-09T08:35:42.657818Z",
+        "lead_time": 7.445,
+        "prediction": {},
+        "result_count": 0,
+        "task": 5,
+        "parent_prediction": null,
+        "parent_annotation": null
+      }
+    ],
+    "file_upload": "aefde40b-sentences.txt",
+    "drafts": [],
+    "predictions": [],
+    "data": {
+      "text": "Erfolgreich abgeschlossene Berufsausbildung zum Fachinformatiker oder eine vergleichbare Ausbildung oder einschlägige praktische Berufserfahrung"
+    },
+    "meta": {},
+    "created_at": "2022-03-09T08:15:06.511436Z",
+    "updated_at": "2022-03-09T08:15:06.511450Z",
+    "project": 1
+  },
+  {
+    "id": 4,
+    "annotations": [
+      {
+        "id": 4,
+        "completed_by": 1,
+        "result": [
+          {
+            "value": {
+              "start": 32,
+              "end": 42,
+              "text": "Ausbildung",
+              "labels": ["education_type"]
+            },
+            "id": "KTB5gkoL7z",
+            "from_name": "label",
+            "to_name": "text",
+            "type": "labels",
+            "origin": "manual"
+          },
+          {
+            "value": {
+              "start": 47,
+              "end": 63,
+              "text": "Fachinformatiker",
+              "labels": ["education_topic"]
+            },
+            "id": "wvOBS9D4-E",
+            "from_name": "label",
+            "to_name": "text",
+            "type": "labels",
+            "origin": "manual"
+          },
+          {
+            "from_id": "KTB5gkoL7z",
+            "to_id": "wvOBS9D4-E",
+            "type": "relation",
+            "direction": "right",
+            "labels": ["education:in"]
+          }
+        ],
+        "was_cancelled": false,
+        "ground_truth": false,
+        "created_at": "2022-03-09T08:34:22.068081Z",
+        "updated_at": "2022-03-09T08:34:22.068137Z",
+        "lead_time": 17.823,
+        "prediction": {},
+        "result_count": 0,
+        "task": 4,
+        "parent_prediction": null,
+        "parent_annotation": null
+      }
+    ],
+    "file_upload": "aefde40b-sentences.txt",
+    "drafts": [],
+    "predictions": [],
+    "data": {
+      "text": "Eine erfolgreich abgeschlossene Ausbildung zum Fachinformatiker oder vergleichbare IT-Ausbildung bzw. Berufserfahrung in ähnlicher Funktion."
+    },
+    "meta": {},
+    "created_at": "2022-03-09T08:15:06.511375Z",
+    "updated_at": "2022-03-09T08:15:06.511390Z",
+    "project": 1
+  },
+  {
+    "id": 3,
+    "annotations": [
+      {
+        "id": 3,
+        "completed_by": 1,
+        "result": [
+          {
+            "value": {
+              "start": 15,
+              "end": 31,
+              "text": "Berufsausbildung",
+              "labels": ["education_type"]
+            },
+            "id": "kBjtlitnkx",
+            "from_name": "label",
+            "to_name": "text",
+            "type": "labels",
+            "origin": "manual"
+          },
+          {
+            "value": {
+              "start": 35,
+              "end": 37,
+              "text": "IT",
+              "labels": ["education_topic"]
+            },
+            "id": "ECpx6v6xu1",
+            "from_name": "label",
+            "to_name": "text",
+            "type": "labels",
+            "origin": "manual"
+          },
+          {
+            "value": {
+              "start": 62,
+              "end": 69,
+              "text": "Studium",
+              "labels": ["education_type"]
+            },
+            "id": "VFD3DuWGBk",
+            "from_name": "label",
+            "to_name": "text",
+            "type": "labels",
+            "origin": "manual"
+          },
+          {
+            "value": {
+              "start": 50,
+              "end": 61,
+              "text": "technisches",
+              "labels": ["education_topic"]
+            },
+            "id": "PwB6Wt0WDe",
+            "from_name": "label",
+            "to_name": "text",
+            "type": "labels",
+            "origin": "manual"
+          },
+          {
+            "from_id": "kBjtlitnkx",
+            "to_id": "ECpx6v6xu1",
+            "type": "relation",
+            "direction": "right",
+            "labels": ["education:in"]
+          },
+          {
+            "from_id": "VFD3DuWGBk",
+            "to_id": "PwB6Wt0WDe",
+            "type": "relation",
+            "direction": "right",
+            "labels": ["education:in"]
+          }
+        ],
+        "was_cancelled": false,
+        "ground_truth": false,
+        "created_at": "2022-03-09T08:34:01.910350Z",
+        "updated_at": "2022-03-09T08:34:01.910407Z",
+        "lead_time": 27.752,
+        "prediction": {},
+        "result_count": 0,
+        "task": 3,
+        "parent_prediction": null,
+        "parent_annotation": null
+      }
+    ],
+    "file_upload": "aefde40b-sentences.txt",
+    "drafts": [],
+    "predictions": [],
+    "data": {
+      "text": "Abgeschlossene Berufsausbildung im IT-Umfeld oder technisches Studium"
+    },
+    "meta": {},
+    "created_at": "2022-03-09T08:15:06.511312Z",
+    "updated_at": "2022-03-09T08:15:06.511327Z",
+    "project": 1
+  },
+  {
+    "id": 2,
+    "annotations": [
+      {
+        "id": 2,
+        "completed_by": 1,
+        "result": [
+          {
+            "value": {
+              "start": 14,
+              "end": 25,
+              "text": "Berufslehre",
+              "labels": ["education_type"]
+            },
+            "id": "IKSfzqPShq",
+            "from_name": "label",
+            "to_name": "text",
+            "type": "labels",
+            "origin": "manual"
+          }
+        ],
+        "was_cancelled": false,
+        "ground_truth": false,
+        "created_at": "2022-03-09T08:33:32.040474Z",
+        "updated_at": "2022-03-09T08:33:32.040545Z",
+        "lead_time": 7.38,
+        "prediction": {},
+        "result_count": 0,
+        "task": 2,
+        "parent_prediction": null,
+        "parent_annotation": null
+      }
+    ],
+    "file_upload": "aefde40b-sentences.txt",
+    "drafts": [],
+    "predictions": [],
+    "data": { "text": "Abgeschlossen Berufslehre" },
+    "meta": {},
+    "created_at": "2022-03-09T08:15:06.511246Z",
+    "updated_at": "2022-03-09T08:15:06.511263Z",
+    "project": 1
+  },
+  {
+    "id": 1,
+    "annotations": [
+      {
+        "id": 1,
+        "completed_by": 1,
+        "result": [
+          {
+            "value": {
+              "start": 15,
+              "end": 25,
+              "text": "Ausbildung",
+              "labels": ["education_type"]
+            },
+            "id": "seop41FuSp",
+            "from_name": "label",
+            "to_name": "text",
+            "type": "labels",
+            "origin": "manual"
+          },
+          {
+            "value": {
+              "start": 37,
+              "end": 40,
+              "text": "IT-",
+              "labels": ["education_topic"]
+            },
+            "id": "VLNMNy_tbA",
+            "from_name": "label",
+            "to_name": "text",
+            "type": "labels",
+            "origin": "manual"
+          },
+          {
+            "value": {
+              "start": 46,
+              "end": 65,
+              "text": "technischen Bereich",
+              "labels": ["education_topic"]
+            },
+            "id": "2SQhWLEVcj",
+            "from_name": "label",
+            "to_name": "text",
+            "type": "labels",
+            "origin": "manual"
+          },
+          {
+            "value": {
+              "start": 72,
+              "end": 88,
+              "text": "Fachinformatiker",
+              "labels": ["education_topic"]
+            },
+            "id": "Zr_m5IpJ8B",
+            "from_name": "label",
+            "to_name": "text",
+            "type": "labels",
+            "origin": "manual"
+          },
+          {
+            "from_id": "seop41FuSp",
+            "to_id": "VLNMNy_tbA",
+            "type": "relation",
+            "direction": "right",
+            "labels": ["education:in"]
+          },
+          {
+            "from_id": "seop41FuSp",
+            "to_id": "2SQhWLEVcj",
+            "type": "relation",
+            "direction": "right",
+            "labels": ["education:in"]
+          },
+          {
+            "from_id": "seop41FuSp",
+            "to_id": "Zr_m5IpJ8B",
+            "type": "relation",
+            "direction": "right",
+            "labels": ["education:in"]
+          }
+        ],
+        "was_cancelled": false,
+        "ground_truth": false,
+        "created_at": "2022-03-09T08:33:21.218375Z",
+        "updated_at": "2022-03-09T08:33:21.218431Z",
+        "lead_time": 350.348,
+        "prediction": {},
+        "result_count": 0,
+        "task": 1,
+        "parent_prediction": null,
+        "parent_annotation": null
+      }
+    ],
+    "file_upload": "aefde40b-sentences.txt",
+    "drafts": [],
+    "predictions": [],
+    "data": {
+      "text": "abgeschlossene Ausbildung (w/m/d) im IT- oder technischen Bereich (z.B. Fachinformatiker*in (w/m/d) Systemintegration) oder andere vergleichbare Kenntnisse"
+    },
+    "meta": {},
+    "created_at": "2022-03-09T08:15:06.511144Z",
+    "updated_at": "2022-03-09T08:15:06.511183Z",
+    "project": 1
+  }
+]
