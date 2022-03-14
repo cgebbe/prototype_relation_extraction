@@ -10,46 +10,24 @@ class MyDataset(torch.utils.data.Dataset):
             "Mathematik- und Physikstudium",
         ]
         self.tokenizer = transformers.AutoTokenizer.from_pretrained(
-    # "bert-base-german-cased",
-    # "distilbert-base-cased",
-    "distilbert-base-german-cased",
-     cache_dir=".cache"
-)
+            # "bert-base-german-cased",
+            # "distilbert-base-cased",
+            "distilbert-base-german-cased",
+            cache_dir=".cache",
+        )
 
     def __getitem__(self, idx):
-        """Returns item with the following dictionary keys:
-        
-        - input_ids ()
-        - attention_mask (all 1's)
-        - labels
+        """Returns dictionary with the following keys:
+
+        - input_ids = [102, 1281, 232, 136, 2218, 865, 103]
+        - attention_mask = [102, 1281, 232, 136, 2218, 865, 103]
+        - labels = [102, 1281, 232, 136, 2218, 865, 103]
         """
         word = self.sentences[idx]
-        item = self.tokenizer(word) # , return_tensors="pt"
-        
-        for key, val in item.items():
-            print(key)
-            print(val)
-
-        if 0:
-            # type(item) == BatchEncoding
-            # type(item.encodings[0]) == tokens.Encoding !!!
-            item.encodings[0]
-            # Encoding(num_tokens=7, attributes=[ids, type_ids, tokens, offsets, attention_mask, special_tokens_mask, overflowing])
-            item.encodings[0].tokens # ['[CLS]', 'Haupt', '-', 'und', 'Neben', '##satz', '[SEP]']
-
-            # see https://huggingface.co/docs/transformers/v4.17.0/en/main_classes/tokenizer#transformers.BatchEncoding
-            item.tokens() # ['[CLS]', 'Haupt', '-', 'und', 'Neben', '##satz', '[SEP]']
-            item.word_ids() # [None, 0, 1, 2, 3, 3, None]
-            item.words()  # same as word_ids()
-            num_tokens = len(item)
-
-            word[1] # yields 'a' from hAupt.
-            item.char_to_word(1) # yields 0, since first word
-            item.char_to_token(1) # yields 1, since second token (after [CLS])
-        
+        item = self.tokenizer(word)
         num_tokens = len(item.encodings[0])
         item["labels"] = [1] * num_tokens
-        return {k: torch.tensor(v) for k,v in item.items()}
+        return {k: torch.tensor(v) for k, v in item.items()}
 
     def __len__(self):
         return len(self.sentences)
@@ -91,7 +69,4 @@ trainer = transformers.Trainer(
     # callbacks=[transformers.integrations.TensorBoardCallback()],  # already default
 )
 train_output = trainer.train()
-
-# TODO: Error too many values to unpack
-# -> Probably need to feed in batches of encodings?
-d=0
+d = 0

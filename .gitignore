@@ -1,6 +1,5 @@
 # PERSONAL ADDITIONS
 lightning_logs/
-gitignore/
 .cache/
 output/
 data/label_studio/*
