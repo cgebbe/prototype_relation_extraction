@@ -1,4 +1,3 @@
-["Ausbildung (w/m/d) im IT- oder technischen Bereich",
-"Wirt­schafts­wissen­schaften/-infor­matik/-mathe­matik",
-"Mathe­matik- oder Physikstudium",
-"Haupt- oder Nebensatz",]
+Mathe­matik- oder Physikstudium
+Informatik- oder Physikstudium
+Tischler- oder Kaufmannausbildung

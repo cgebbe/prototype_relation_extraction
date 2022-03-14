@@ -1,6 +1,9 @@
 # PERSONAL ADDITIONS
 lightning_logs/
 gitignore/
+.cache/
+output/
+data/label_studio/*
 
 # ===================================================================
 # PYTHON FROM https://github.com/github/gitignore/blob/main/Python.gitignore

@@ -6,6 +6,29 @@
 
 # Questions
 
+## How to specify our own huggingface dataset? Do we even need one?
+
+Ah, seems to make sense, since eventually used in transformers.Trainers
+```python
+raw_datasets = load_dataset("dataset.py")  # defines input files (including labels)
+ds = raw_datasets.map(utils.preprocess, batched=True)  # tokenize (and adapt labels)
+ds_train = ds["train"].shuffle(seed=42)
+trainer = transformers.Trainer(train_dataset=ds_train, ...)
+```
+
+- However, for NER we used the [datasets](https://pypi.org/project/datasets/)-package
+- In contrast, the [huggingface documentation](https://huggingface.co/transformers/v3.2.0/custom_datasets.html) describes simple torch-datasets. Maybe this is simpler?! It requires to only return a __getitem__ function returning a dict AFTER tokenization with likely the following keys:
+  - input_ids
+  - token_type_ids
+  - attention_mask
+  - labels (as numbers, e.g. 0,1,...)
+
+
+## Is the IOB2 really necessary?
+
+Ah, how else to identify whether a word just starts or is a continuation?! So yes, probably necessary :/. However, can do this also within the loader probably?!
+
+
 ## Can we deal with labeling word **parts**?
 > Mathe­matik- oder Physikstudium
 
@@ -14,7 +37,21 @@
 - export as JSON works. (simply marks characters)
 - how to load that as JSON labels?
 
+Test the following cases
+- labeling matches tokenization -> works
+- labeling does not match tokenization -> error
 
+```bash
+# using bert-base-german-cased
+['[CLS]', 'Mathematik', '-', 'oder', 'Physik', '##studium', '[SEP]']
+['[CLS]', 'Informatik', '-', 'oder', 'Physik', '##studium', '[SEP]']
+['[CLS]', 'Tisch', '##ler', '-', 'oder', 'Kaufmanns', '##ausbildung', '[SEP]']
+
+# using distilbert-base-german-cased. Note separation at Kaufmanns-!
+['[CLS]', 'Mathematik', '-', 'oder', 'Physik', '##studium', '[SEP]']
+['[CLS]', 'Informatik', '-', 'oder', 'Physik', '##studium', '[SEP]']
+['[CLS]', 'Tisch', '##ler', '-', 'oder', 'Kaufmann', '##sau', '##sb', '##ild', '##ung', '[SEP]']
+```
 
 ## Maybe need our own de-hyphener?! Go through sentences
 > Wirt­schafts­wissen­schaften/-infor­matik/-mathe­matik
@@ -205,3 +242,12 @@ from https://github.com/adbar/German-NLP
 - https://github.com/pd3f/dehyphen = removes hyphens on line breaks
 - https://github.com/spencermountain/compromise - seems interesting, but not for German
 - https://github.com/msiemens/HypheNN-de - creates hyphens
+
+## docker error message
+
+Failed to save 'modeling_distilbert.py': Unable to write file 'vscode-remote://dev-container+2f6d6e742f736461312f70726f6a656374732f6769742f70726f746f74797065732f3230323230335f72656c6174696f6e5f65787472616374696f6e/usr/local/lib/python3.6/dist-packages/transformers/models/distilbert/modeling_distilbert.py' (NoPermissions (FileSystemError): Error: EACCES: permission denied, open '/usr/local/lib/python3.6/dist-packages/transformers/models/distilbert/modeling_distilbert.py')
+
+- Problem:
+  - python libraries are installed using root
+  - for vscode, HOME needs to be set differently (independent of user, though!)
+  - files created as root cannot be easily accessed otherwise :/
