@@ -1,8 +1,11 @@
 # TODO
 
-- [ ] start a new template with the huggingface docker container
-- [ ] work in that container
-- [ ] load "labeling_word_parts.json"
+- [ ] Make data loader for word parts
+  - [ ] load labels
+    - [ ] throw error if labels don't match tokens fully (because word labels!)
+  - [ ] convert them to IOB2-classes
+  - [ ] overfit on 1-3 sentences
+  - [ ] add compute metrics
 
 # Questions
 
@@ -243,11 +246,17 @@ from https://github.com/adbar/German-NLP
 - https://github.com/spencermountain/compromise - seems interesting, but not for German
 - https://github.com/msiemens/HypheNN-de - creates hyphens
 
-## docker error message
 
-Failed to save 'modeling_distilbert.py': Unable to write file 'vscode-remote://dev-container+2f6d6e742f736461312f70726f6a656374732f6769742f70726f746f74797065732f3230323230335f72656c6174696f6e5f65787472616374696f6e/usr/local/lib/python3.6/dist-packages/transformers/models/distilbert/modeling_distilbert.py' (NoPermissions (FileSystemError): Error: EACCES: permission denied, open '/usr/local/lib/python3.6/dist-packages/transformers/models/distilbert/modeling_distilbert.py')
+## TODO later: Update docker
 
 - Problem:
   - python libraries are installed using root
   - for vscode, HOME needs to be set differently (independent of user, though!)
   - files created as root cannot be easily accessed otherwise :/
+- Solution  
+  - add custom home directory
+  - but still use root user
+- TODO: Update utils/project-template
+  - update Dockerfile - no USER
+  - update .devcontainer.json - remove remoteUser
+  - update launch.json - also accept breakpoints in system libraries code

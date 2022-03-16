@@ -1,3 +1,4 @@
+from typing import Dict
 from transformers import BertTokenizer, BertModel, AutoModel, AutoTokenizer
 import numpy as np
 
@@ -37,3 +38,27 @@ for word in phrases[0:1]:
         word[1]  # yields 'a' from hAupt.
         item.char_to_word(1)  # yields 0, since first word
         item.char_to_token(1)  # yields 1, since second token (after [CLS])
+
+        # get token starts and ends
+        item.tokens()
+        
+        num_tokens = len(item.encodings[0])
+
+        # dfdf
+        token_idx_per_starting_char_idx = {}
+        token_idx_per_ending_char_idx = {}
+        for token_idx in range(num_tokens):
+            try:
+                span = item.token_to_chars(token_idx)
+            except TypeError:
+                # TypeError: type object argument after * must be an iterable, not NoneType
+                pass
+            token_idx_per_starting_char_idx[span.start] = token_idx
+            token_idx_per_ending_char_idx[span.end] = token_idx
+
+        # assign one class
+        
+
+
+        first_encoding = item._encodings[0]
+        first_encoding.char_to_token(char_pos=1, sequence_index=0)
