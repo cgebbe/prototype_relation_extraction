@@ -1,22 +1,29 @@
-
-
 class LabelError(Exception):
     pass
+
 
 class Labels:
     def __init__(self, names) -> None:
         self.names = names
 
+        # Make it compatible with https://github.com/chakki-works/seqeval
+        self.name_per_class = {0: "O"}
+        for name in names:
+            self.name_per_class[self.get_B_class(name)] = f"B-{name.upper()}"
+            self.name_per_class[self.get_I_class(name)] = f"I-{name.upper()}"
+
     def __len__(self):
         # each name has B_label and I_label + Background class
-        return 1 + 2*len(self.names)
+        return 1 + 2 * len(self.names)
 
-    def get_B_class_from_name(self, name):
+    def get_B_class(self, name):
         return 1 + 2 * self.names.index(name)
-    
-    def get_I_class_from_name(self, name):
+
+    def get_I_class(self, name):
         return 1 + 2 * self.names.index(name) + 1
-        
+
+    def get_name_from_class(self, class_idx):
+        return self.name_per_class[class_idx]
 
     def from_annotation_batch(self, annotation_batch, item):
         # construct mapping between chars and tokens
@@ -50,8 +57,16 @@ class Labels:
                 label_name = annotation["value"]["labels"][0]
                 for token_idx in range(start_token, end_token + 1):
                     if token_idx == start_token:
-                        labels[token_idx] = self.get_B_class_from_name(label_name)
+                        labels[token_idx] = self.get_B_class(label_name)
                     else:
-                        labels[token_idx] = self.get_I_class_from_name(label_name)
-        
+                        labels[token_idx] = self.get_I_class(label_name)
+
         return labels
+
+
+LABELS = Labels(
+    [
+        "education_type",
+        "education_topic",
+    ]
+)

@@ -3,22 +3,16 @@ import torch
 import datetime
 import json
 from pathlib import Path
-import labels
 import random
+
+from labels import LABELS, LabelError
+import metrics
 
 
 def _replace_soft_hyphens(s):
     # Somehow, the exported JSON contains soft hyphens to indiciate possible line breaks.
     # Simply replace them, see https://stackoverflow.com/a/51976543/2135504
     return s.replace("\xad", "")
-
-
-LABELS = labels.Labels(
-    [
-        "education_type",
-        "education_topic",
-    ]
-)
 
 
 class MyDataset(torch.utils.data.Dataset):
@@ -60,9 +54,9 @@ class MyDataset(torch.utils.data.Dataset):
                 item=item,
             )
             assert len(item["labels"]) == len(item["input_ids"])
-        except labels.LabelError:
+        except LabelError:
             # return any other random item. (empty item is rather difficult)
-            random_idx = random.randint(0, len(self))
+            random_idx = random.randint(0, len(self) - 1)
             return self.__getitem__(random_idx)
 
         return {k: torch.tensor(v) for k, v in item.items()}
@@ -76,7 +70,7 @@ ds = MyDataset(data_path=Path("data/phrases_with_hyphens.json"))
 output_dir = f"output/{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}"
 training_args = transformers.TrainingArguments(
     # --- how to train
-    num_train_epochs=2,  # defaults to 3
+    num_train_epochs=10,  # defaults to 3
     per_device_train_batch_size=1,  # defaults to 8
     gradient_accumulation_steps=8,  # defaults to 1
     per_device_eval_batch_size=1,
@@ -104,7 +98,7 @@ trainer = transformers.Trainer(
     args=training_args,
     train_dataset=ds,
     eval_dataset=ds,
-    # compute_metrics=create_metric_function(labels),
+    compute_metrics=metrics.compute_metrics,
     # callbacks=[transformers.integrations.TensorBoardCallback()],  # already default
 )
 train_output = trainer.train()

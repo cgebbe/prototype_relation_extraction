@@ -41,7 +41,7 @@ for word in phrases[0:1]:
 
         # get token starts and ends
         item.tokens()
-        
+
         num_tokens = len(item.encodings[0])
 
         # dfdf
@@ -57,8 +57,6 @@ for word in phrases[0:1]:
             token_idx_per_ending_char_idx[span.end] = token_idx
 
         # assign one class
-        
-
 
         first_encoding = item._encodings[0]
         first_encoding.char_to_token(char_pos=1, sequence_index=0)
