@@ -9,6 +9,14 @@
 
 # Questions
 
+## How to label [CLS] and background? 0 or ignore?
+
+from https://github.com/cgebbe/prototype_ner_nobel_laureate/blob/main/utils.py
+> if word is split into multiple tokens, only label first token 
+Does that really make sense?!
+
+I think current behavior makes sense too...
+
 ## How to specify our own huggingface dataset? Do we even need one?
 
 Ah, seems to make sense, since eventually used in transformers.Trainers

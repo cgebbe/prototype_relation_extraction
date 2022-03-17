@@ -3,7 +3,7 @@ FROM huggingface/transformers-pytorch-gpu:4.9.1
 
 # git and git-lfs. "git lfs install" needs to be run from inside repo
 RUN apt update
-RUN apt install git-lfs
+RUN apt install -y git-lfs vim
 
 # linting
 RUN python3 -m pip install --upgrade pip setuptools wheel

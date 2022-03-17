@@ -3,6 +3,8 @@ import torch
 import datetime
 import json
 from pathlib import Path
+import labels
+import random
 
 
 def _replace_soft_hyphens(s):
@@ -11,11 +13,12 @@ def _replace_soft_hyphens(s):
     return s.replace("\xad", "")
 
 
-LABELS = [
-    "education_type",
-    "education_topic",
-]
-NUM_LABELS = 1 + 2 * len(LABELS)
+LABELS = labels.Labels(
+    [
+        "education_type",
+        "education_topic",
+    ]
+)
 
 
 class MyDataset(torch.utils.data.Dataset):
@@ -42,50 +45,26 @@ class MyDataset(torch.utils.data.Dataset):
 
         - input_ids = [102, 1281, 232, 136, 2218, 865, 103]
         - attention_mask = [1,1,1,1,1,1]
-        - labels = [102, 1281, 232, 136, 2218, 865, 103]
+        - labels = [0,0,1,2,0,0,]
         """
         word = self.data[idx]["data"]["text"]
-        item = self.tokenizer(word)
+        item = self.tokenizer(
+            word,
+            # padding is only required if batch_size>1 during training or validation
+            padding=False,  # "max_length" or number
+        )
 
-        # construct mapping between chars and tokens
-        num_tokens = len(item.encodings[0])
-        token_idx_per_starting_char_idx = {}
-        token_idx_per_ending_char_idx = {}
-        for token_idx in range(num_tokens):
-            try:
-                span = item.token_to_chars(token_idx)
-            except TypeError:
-                # TypeError: type object argument after * must be an iterable, not NoneType
-                continue
-            token_idx_per_starting_char_idx[span.start] = token_idx
-            token_idx_per_ending_char_idx[span.end] = token_idx
+        try:
+            item["labels"] = LABELS.from_annotation_batch(
+                annotation_batch=self.data[idx]["annotations"],
+                item=item,
+            )
+            assert len(item["labels"]) == len(item["input_ids"])
+        except labels.LabelError:
+            # return any other random item. (empty item is rather difficult)
+            random_idx = random.randint(0, len(self))
+            return self.__getitem__(random_idx)
 
-        # labels
-        labels = [0] * num_tokens  # everything as background class initially
-        annotation_batches = self.data[idx]["annotations"]
-        for annotations in annotation_batches:
-            for annotation in annotations["result"]:
-
-                start_char = annotation["value"]["start"]
-                end_char = annotation["value"]["end"]
-                try:
-                    start_token = token_idx_per_starting_char_idx[start_char]
-                    end_token = token_idx_per_ending_char_idx[end_char]
-                except KeyError:
-                    raise ValueError("Labeling does not match tokenization!")
-
-                assert len(annotation["value"]["labels"]) == 1
-                # 0 = background, 1,3,5...=B-Labels, 2,4,5=I-Labels
-                label = annotation["value"]["labels"][0]
-                label_B_class = 1 + 2 * LABELS.index(label)
-                label_I_class = 1 + 2 * LABELS.index(label) + 1
-                for token_idx in range(start_token, end_token + 1):
-                    if token_idx == start_token:
-                        labels[token_idx] = label_B_class
-                    else:
-                        labels[token_idx] = label_I_class
-
-        item["labels"] = labels
         return {k: torch.tensor(v) for k, v in item.items()}
 
     def __len__(self):
@@ -100,6 +79,7 @@ training_args = transformers.TrainingArguments(
     num_train_epochs=2,  # defaults to 3
     per_device_train_batch_size=1,  # defaults to 8
     gradient_accumulation_steps=8,  # defaults to 1
+    per_device_eval_batch_size=1,
     learning_rate=5e-5,  # defaults to 5e-5
     lr_scheduler_type="constant",  # defaults to linear
     no_cuda=True,  # if GPU too small, see https://github.com/google-research/bert/blob/master/README.md#out-of-memory-issues
@@ -114,7 +94,7 @@ training_args = transformers.TrainingArguments(
 
 model = transformers.AutoModelForTokenClassification.from_pretrained(
     "distilbert-base-cased",
-    num_labels=NUM_LABELS,
+    num_labels=len(LABELS),
     cache_dir=".cache",
     # gradient_checkpointing only works for bert, not for distilbert
     # gradient_checkpointing=True,  # see BertConfig and https://github.com/huggingface/transformers/blob/0735def8e1200ed45a2c33a075bc1595b12ef56a/src/transformers/modeling_bert.py#L461
