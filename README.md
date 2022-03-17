@@ -1,11 +1,7 @@
 # TODO
 
-- [ ] Make data loader for word parts
-  - [ ] load labels
-    - [ ] throw error if labels don't match tokens fully (because word labels!)
-  - [ ] convert them to IOB2-classes
-  - [ ] overfit on 1-3 sentences
-  - [ ] add compute metrics
+- [x] NER with custom JSON loader and word-parts
+- [ ] Add relation-inference
 
 # Questions
 

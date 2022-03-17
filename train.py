@@ -9,24 +9,12 @@ from labels import LABELS, LabelError
 import metrics
 
 
-def _replace_soft_hyphens(s):
-    # Somehow, the exported JSON contains soft hyphens to indiciate possible line breaks.
-    # Simply replace them, see https://stackoverflow.com/a/51976543/2135504
-    return s.replace("\xad", "")
-
-
 class MyDataset(torch.utils.data.Dataset):
     def __init__(self, data_path: Path):
         assert data_path.exists()
         with open(data_path, encoding="utf-8") as f:
             content = f.read()
-        # content = _replace_soft_hyphens(content)  # if I replace soft-hyphens, value does not match anymore :/
         self.data = json.loads(content)
-
-        self.sentences = [
-            "Haupt- und Nebensatz",
-            "Mathematik- und Physikstudium",
-        ]
         self.tokenizer = transformers.AutoTokenizer.from_pretrained(
             # "bert-base-german-cased",
             # "distilbert-base-cased",
