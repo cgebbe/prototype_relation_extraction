@@ -1,9 +1,63 @@
 # TODO
 
 - [x] NER with custom JSON loader and word-parts
-- [ ] Add relation-inference
+- [ ] Add relations!
+  - [ ] Add label loading
+  - [ ] Add inference model somehow
+
+# Notes
+
+## Rebuild docker locally
+
+docker build -it --rm .
 
 # Questions
+
+### Extraction relationships between entities (since we already did NER)
+
+https://github.com/explosion/projects/tree/v3/tutorials/rel_component/scripts
+- not 100% sure how supposed to work
+- they create 2d-matrix of all span combinations (span has 1 or more tokens)
+- perform pooling (so that span with multiple tokens reduced)
+- apply a linear classifier on top of it.
+- No context at all? Well, indirectly, via output tensors from BERT, but no position...
+
+https://huggingface.co/yseop/distilbert-base-financial-relation-extraction
+
+https://towardsdatascience.com/how-to-train-a-joint-entities-and-relation-extraction-classifier-using-bert-transformer-with-spacy-49eb08d91b5c
+
+https://towardsdatascience.com/bert-s-for-relation-extraction-in-nlp-2c7c3ab487c4
+- uses output tensors from BERT for two entities (2x768 inputs)
+- adds a Linear + logistic classifiation layer (1xnum_labels output)
+
+https://medium.com/@andreasherman/different-ways-of-doing-relation-extraction-from-text-7362b4c3169e
+- Rule-based ...
+- supervised RE: binary classifier to determine if sentence expresses relation
+- not really helpful article, too high level. Already clear that I do supervised RE.
+
+https://towardsdatascience.com/extracting-relations-among-entities-using-nlp-b3d773c709ce
+- only math theory
+
+https://paperswithcode.com/task/relation-extraction
+- **some papers with code :)**
+- e.g. [REBEL](https://aclanthology.org/2021.findings-emnlp.204.pdf) - bit different task, but has nice summary
+  - > Early approaches tackled RE as a pipeline system, identifying the entities present in the text using Named Entity Recognition, and then classifying the relation, or lack of, between each pair of entities present in the text
+    - most recent example: https://aclanthology.org/2020.emnlp-main.523.pdf
+  - > Finally, there are pipeline systems that tackle both parts of Relation Extraction, NER, and RC. In these setups, entities are first extracted and then a classifier extracts relations sharing part of the encoder.
+- also [PL-Marker](https://paperswithcode.com/paper/pack-together-entity-and-relation-extraction#code)
+
+https://stackoverflow.com/questions/15260212/nlp-to-find-relationship-between-entities
+- latest link from 2018, though?!
+- rather google "entity linking"?
+
+http://nlpprogress.com/english/entity_linking.html
+- maybe https://arxiv.org/pdf/2006.01969.pdf ?
+
+=> General take-away
+- extract (pooled) output-tensors from all entities
+- 
+- add loss - how?!
+
 
 ## How to label [CLS] and background? 0 or ignore?
 

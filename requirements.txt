@@ -1,0 +1,12 @@
+# both libraries are required for IOB2 metrics
+datasets
+seqeval
+
+# for model process
+tensorboard
+
+# linting
+black
+
+# testing
+pytest

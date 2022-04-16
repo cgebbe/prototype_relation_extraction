@@ -1,0 +1,12 @@
+# By default, docker uses the whole directory as build context
+# see https://stackoverflow.com/a/26604307/2135504
+
+# Ignore everything
+# see https://kevinpollet.dev/posts/how-to-use-your-dockerignore-as-a-whitelist/
+*
+
+# Except
+!requirements.*
+!devcontainer/
+!.vscode/
+!Dockerfile
