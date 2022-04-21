@@ -35,4 +35,3 @@ Test that ...
         CE normally
         only takes into account the pairs which are actually used!
 """
-import pytest

@@ -13,7 +13,7 @@ class Labels:
             self.name_per_class[self.get_I_class(name)] = f"I-{name.upper()}"
 
     def __len__(self):
-        # each name has B_label and I_label + Background class
+        # Background class + B_label and I_label for each name
         return 1 + 2 * len(self.names)
 
     def get_B_class(self, name):
@@ -65,7 +65,7 @@ class Labels:
 
 
 LABELS = Labels(
-    [
+    names=[
         "education_type",
         "education_topic",
     ]

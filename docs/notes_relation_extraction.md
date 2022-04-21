@@ -1,3 +1,12 @@
+# Alternative
+
+- extract tokens, where eacht token has a char span
+
+- get label with start and ending char
+- get the corresponding start and end token index
+- TokenToCharMapper.get_token_starting_at(char)
+- TokenToCharMapper.get_token_ending_at(char)
+
 ## Spacy
 
 

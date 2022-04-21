@@ -10,3 +10,7 @@ black
 
 # testing
 pytest
+
+# always test current branch, see https://stackoverflow.com/a/62785081/2135504
+pytest-watch
+pytest-picked

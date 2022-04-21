@@ -27,6 +27,9 @@ RUN pip install -r requirements.txt
 # Problem: vscode tries to install stuff in /root (=default HOME) without permissions.
 # Solution: setup different user and select new HOME. 
 # https://github.com/microsoft/vscode-remote-release/issues/22#issuecomment-488843424
+# However, make sure to still use the root user by OMITTING "remoteUser": "1000".
+# Otherwise, you cannot modify any of the libraries installed in the Docker container.
+# This has the negative side effect that all files belong to root (not <youruser>).
 ARG USERNAME=myuser
 RUN useradd -m $USERNAME
 ENV HOME /home/$USERNAME
