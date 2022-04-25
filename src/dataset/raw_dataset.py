@@ -8,7 +8,7 @@ from typing import List
 class EntityLabel:
     start_idx: int
     stop_idx: int
-    entity_name: str
+    class_names: str
     text: str
 
 
@@ -32,7 +32,7 @@ class DataSet:
                 start_idx=ann["value"]["start"],
                 stop_idx=ann["value"]["end"],
                 text=ann["value"]["text"],
-                entity_name=_pick_only_item(ann["value"]["labels"]),
+                class_names=_pick_only_item(ann["value"]["labels"]),
             )
             for ann in annotations
         ]

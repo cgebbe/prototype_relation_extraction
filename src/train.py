@@ -1,59 +1,28 @@
-import transformers
-import torch
-import datetime
-import json
-from pathlib import Path
-import random
+from src.dataset.torch_dataset import TorchDataset
+from src.dataset.tokenized_dataset import TokenizedDataSet
+from src.dataset.raw_dataset import DataSet
 
-from labels import LABELS, LabelError
+import transformers
+import datetime
+from pathlib import Path
+
 import metrics
 
 
-class MyDataset(torch.utils.data.Dataset):
-    def __init__(self, data_path: Path):
-        assert data_path.exists()
-        with open(data_path, encoding="utf-8") as f:
-            content = f.read()
-        self.data = json.loads(content)
-        self.tokenizer = transformers.AutoTokenizer.from_pretrained(
-            # "bert-base-german-cased",
-            # "distilbert-base-cased",
-            "distilbert-base-german-cased",
-            # cache_dir=".cache",
-        )
+LABEL_PATH = Path("data/phrases_with_hyphens.json")
+CLASS_NAMES = ["education_type", "education_topic"]
 
-    def __getitem__(self, idx):
-        """Returns dictionary with the following keys:
+dataset = DataSet(LABEL_PATH)
+tokenized_dataset = TokenizedDataSet(
+    dataset=dataset,
+    tokenizer=transformers.AutoTokenizer.from_pretrained(
+        "distilbert-base-german-cased",
+        cache_dir=".cache",
+    ),
+    class_names=CLASS_NAMES,
+)
+ds = TorchDataset(tokenized_dataset=tokenized_dataset)
 
-        - input_ids = [102, 1281, 232, 136, 2218, 865, 103]
-        - attention_mask = [1,1,1,1,1,1]
-        - labels = [0,0,1,2,0,0,]
-        """
-        word = self.data[idx]["data"]["text"]
-        item = self.tokenizer(
-            word,
-            # padding is only required if batch_size>1 during training or validation
-            padding=False,  # "max_length" or number
-        )
-
-        try:
-            item["labels"] = LABELS.from_annotation_batch(
-                annotation_batch=self.data[idx]["annotations"],
-                item=item,
-            )
-            assert len(item["labels"]) == len(item["input_ids"])
-        except LabelError:
-            # return any other random item. (empty item is rather difficult)
-            random_idx = random.randint(0, len(self) - 1)
-            return self.__getitem__(random_idx)
-
-        return {k: torch.tensor(v) for k, v in item.items()}
-
-    def __len__(self):
-        return len(self.data)
-
-
-ds = MyDataset(data_path=Path("data/phrases_with_hyphens.json"))
 
 output_dir = f"output/{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}"
 training_args = transformers.TrainingArguments(
@@ -76,7 +45,7 @@ training_args = transformers.TrainingArguments(
 
 model = transformers.AutoModelForTokenClassification.from_pretrained(
     "distilbert-base-cased",
-    num_labels=len(LABELS),
+    num_labels=tokenized_dataset.get_IOB_class_count(),
     cache_dir=".cache",
     # gradient_checkpointing only works for bert, not for distilbert
     # gradient_checkpointing=True,  # see BertConfig and https://github.com/huggingface/transformers/blob/0735def8e1200ed45a2c33a075bc1595b12ef56a/src/transformers/modeling_bert.py#L461

@@ -10,11 +10,22 @@
       "request": "launch",
       "program": "${file}",
       "console": "integratedTerminal",
+      "env": {"PYTHONPATH": "${workspaceRoot}"},
+      "cwd": "${workspaceRoot}",
       "args": [
         // "--model_name_or_path",
         // "bert-base-uncased",
       ],
       "justMyCode": false,
-    }
+    },
+    // {
+    //   "name": "Python: Current File (Integrated Terminal)",
+    //   "type": "python",
+    //   "request": "launch",
+    //   "program": "${file}",
+    //   "cwd": "${workspaceRoot}",
+    //   "env": {"PYTHONPATH": "${workspaceRoot}"},
+    //   "console": "integratedTerminal"
+    // }
   ]
 }
