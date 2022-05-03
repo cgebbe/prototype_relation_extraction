@@ -36,7 +36,7 @@ class TokenizedDataSet:
     def _get_I_class(self, name):
         return 1 + 2 * self.names.index(name) + 1
 
-    def _get_name_from_class(self, class_idx: int):
+    def get_name_from_class(self, class_idx: int) -> str:
         return self.name_per_class[class_idx]
 
     def __getitem__(self, idx):
