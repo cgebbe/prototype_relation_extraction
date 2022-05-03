@@ -72,10 +72,7 @@ def test_load_torch_data():
     )
     torch_dataset = TorchDataset(tokenized_dataset=tokenized_dataset)
 
-
     for i in range(len(torch_dataset)):
         torch_dict = torch_dataset[i]
-        for k,v in torch_dict.items():
+        for k, v in torch_dict.items():
             assert isinstance(v, torch.Tensor)
-
-

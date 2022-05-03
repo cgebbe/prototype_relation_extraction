@@ -10,22 +10,28 @@
       "request": "launch",
       "program": "${file}",
       "console": "integratedTerminal",
-      "env": {"PYTHONPATH": "${workspaceRoot}"},
+      "env": {
+        "PYTHONPATH": "${workspaceRoot}",
+        "_PYTEST_RAISE": "1"
+      },
       "cwd": "${workspaceRoot}",
       "args": [
         // "--model_name_or_path",
         // "bert-base-uncased",
       ],
-      "justMyCode": false,
+      "justMyCode": false
     },
-    // {
-    //   "name": "Python: Current File (Integrated Terminal)",
-    //   "type": "python",
-    //   "request": "launch",
-    //   "program": "${file}",
-    //   "cwd": "${workspaceRoot}",
-    //   "env": {"PYTHONPATH": "${workspaceRoot}"},
-    //   "console": "integratedTerminal"
-    // }
+    {
+      // The following configuration stops pytest at uncaught exceptions
+      // See https://stackoverflow.com/a/62563106/2135504
+      "name": "Debug Tests",
+      "type": "python",
+      "request": "test",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "env": {
+        "_PYTEST_RAISE": "1"
+      }
+    }
   ]
 }

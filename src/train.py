@@ -27,7 +27,7 @@ ds = TorchDataset(tokenized_dataset=tokenized_dataset)
 output_dir = f"output/{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}"
 training_args = transformers.TrainingArguments(
     # --- how to train
-    num_train_epochs=10,  # defaults to 3
+    num_train_epochs=2,  # defaults to 3
     per_device_train_batch_size=1,  # defaults to 8
     gradient_accumulation_steps=8,  # defaults to 1
     per_device_eval_batch_size=1,
