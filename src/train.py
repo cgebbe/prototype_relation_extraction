@@ -44,7 +44,7 @@ metric_calculator = MetricCalculator(
 output_dir = f"output/{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}"
 training_args = transformers.TrainingArguments(
     # --- how to train
-    num_train_epochs=20,  # defaults to 3
+    num_train_epochs=2,  # defaults to 3
     per_device_train_batch_size=1,  # defaults to 8
     gradient_accumulation_steps=8,  # defaults to 1
     per_device_eval_batch_size=1,
@@ -58,6 +58,7 @@ training_args = transformers.TrainingArguments(
     logging_strategy="epoch",
     save_strategy="epoch",
     save_total_limit=1,  # delete any older checkpoint
+    label_names=["token_class_labels"],
 )
 trainer = transformers.Trainer(
     model=composite_model,

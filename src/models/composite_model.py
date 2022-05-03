@@ -24,7 +24,7 @@ class CompositeModel(nn.Module):
         self.base_model = base_model
         self.token_classifier = TokenClassifier(class_count=num_token_classes)
 
-    def forward(self, input_ids=None, attention_mask=None, labels=None):
+    def forward(self, input_ids=None, attention_mask=None, token_class_labels=None):
         """Similar to DistilbertModel
 
         See https://huggingface.co/transformers/v2.11.0/_modules/transformers/modeling_distilbert.html#DistilBertModel
@@ -41,7 +41,7 @@ class CompositeModel(nn.Module):
         embeddings = base_output.last_hidden_state
 
         # For the moment, use only
-        output = self.token_classifier(embeddings, labels)
+        output = self.token_classifier(embeddings, token_class_labels)
 
         # TODO: Add another head for entity relation
         return output

@@ -17,7 +17,7 @@ General idea for relation extraction:
 Test that ...
     relations labels are loaded as expected
         for each token, we get an array of (num_pairs, 1)
-    predicted text can be converted to (num_pairs, 2*768) matrix!
+    predicted text can be converted to (num_pairs, 2*768+1) matrix!
         
         RelationPair:
             from_token_index

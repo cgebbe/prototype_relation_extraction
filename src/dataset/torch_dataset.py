@@ -26,7 +26,7 @@ class TorchDataset(torch.utils.data.Dataset):
         out = {
             "input_ids": item.tokens,
             "attention_mask": item.attention_mask,
-            "labels": item.token_classes,
+            "token_class_labels": item.token_classes,
         }
         return {k: torch.tensor(v) for k, v in out.items()}
 
